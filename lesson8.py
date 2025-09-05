@@ -35,9 +35,9 @@ def get_coffee_list(coffee_data):
 	coffee_shops_list = []
 	for shop in coffee_data:
 		coffee_shop = {
-		'latitude' : files["geoData"]['coordinates'][1],
-		'longitude' : files["geoData"]['coordinates'][0],
-		'title': files["Name"]
+		'latitude' : shop["geoData"]['coordinates'][1],
+		'longitude' : shop["geoData"]['coordinates'][0],
+		'title': shop["Name"]
 		}
 		coffee_shops_list.append(coffee_shop)
 	return coffee_shops_list	
@@ -52,8 +52,8 @@ def main():
 
 
 	for shop in coffee_shops_list:
-		shop_coord = (files['longitude'], files['latitude']) 
-		files['distance'] = distance(lonlat(*location), lonlat(*shop_coord)).km
+		shop_coord = (shop['longitude'], shop['latitude']) 
+		shop['distance'] = distance(lonlat(*location), lonlat(*shop_coord)).km
 
 
 	sort_coffee_shops = sorted(coffee_shops_list, key=lambda x: x['distance'])
@@ -73,9 +73,8 @@ def main():
 	m.save('coffee.html')
 
 
-if __name__ == __main__:
-	main()
-
+if __name__ == '__main__':
+    main()
 
 
 
