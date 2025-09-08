@@ -3,9 +3,7 @@ import requests
 from dotenv import load_dotenv
 import os
 from geopy.distance import lonlat, distance
-from pprint import pprint
 import folium
-load_dotenv()
 
 
 def fetch_coordinates(apikey, address):
@@ -43,6 +41,7 @@ def get_coffee_list(coffee_data):
 	return coffee_shops_list	
 
 def main():
+	load_dotenv()
 	coffee_data = load_coffee_shops()
 	coffee_shops_list = get_coffee_list(coffee_data)
 
